@@ -1,6 +1,27 @@
 package com.shenshanlaoyuan.mobilesafe.activities;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -11,11 +32,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shenshanlaoyuan.mobilesafe.R;
+import com.shenshanlaoyuan.mobilesafe.domain.UrlBean;
 
 public class SplashActivity extends ActionBarActivity {
 
-	private RelativeLayout rl_root;
-	private TextView tv_versionName;
+	private static final int LOADMAIN = 1;// 加载主界面
+	private static final int SHOWUPDATEDIALOG = 2;// 弹出更新对话框
+	private RelativeLayout rl_root;// 界面的根布局组件
+	private TextView tv_versionName; // 显示版本名的组件
+	private UrlBean parseJson;// url信息封装bean
+	private int versionCode;// 版本号
+	private String versionName;// 版本名称
+	private long startTimeMillis;// 开始访问网络的时间
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +53,203 @@ public class SplashActivity extends ActionBarActivity {
 		initView();
 		// 初始化动画
 		initAnimation();
+		// 初始化数据
+		initDate();
+
+		// 检查服务器的版本
+		checkVersion();
+	}
+
+	/**
+	 * 初始化数据
+	 */
+	private void initDate() {
+		// 获取自己的版本信息
+		PackageManager manager = getPackageManager();
+		try {
+			PackageInfo packageInfo = manager.getPackageInfo(getPackageName(),
+					0);
+			// 当前版本号
+			versionCode = packageInfo.versionCode;
+			// 当前版本名称
+			versionName = packageInfo.versionName;
+			// 设置TextView
+			tv_versionName.setText(versionName);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 访问服务器获取最新的版本信息
+	 */
+	private void checkVersion() {
+
+		// 访问服务器，获取url数据
+		// 耗时操作放子线程中执行
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				try {
+					startTimeMillis = System.currentTimeMillis();
+					URL url = new URL("http://10.0.2.2:8080/version.json");
+					HttpURLConnection conn = (HttpURLConnection) url
+							.openConnection();
+					// 设置读取超时时间
+					conn.setReadTimeout(5000);
+					// 设置网络连接超时时间
+					conn.setConnectTimeout(5000);
+					// 设置请求方式
+					conn.setRequestMethod("GET");
+
+					// 获取相应的结果
+					int code = conn.getResponseCode();
+					if (code == 200) {
+						// 获取字节流
+						InputStream is = conn.getInputStream();
+						// 把字节流转换成字符流
+						BufferedReader bfr = new BufferedReader(
+								new InputStreamReader(is));
+						// 读取一行信息
+						String line = bfr.readLine();
+						// json字符串数据的封装
+						StringBuilder json = new StringBuilder();
+						while (line != null) {
+							json.append(line);
+							line = bfr.readLine();
+						}
+
+						// 解析josn数据
+						parseJson = parseJson(json);
+						// 是否有新版本
+						isNewVersion(parseJson);
+
+						System.out.println(parseJson.getVersionCode());
+
+						bfr.close();
+						conn.disconnect();
+
+					}
+
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}).start();
+	}
+
+	private Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			// 处理消息
+			switch (msg.what) {
+			case LOADMAIN: // 加载主界面
+
+				loadMain();
+				break;
+			case SHOWUPDATEDIALOG:
+				showUpdateDialog();
+				break;
+			default:
+				break;
+			}
+
+		}
+
+	};
+
+	/**
+	 * 加载主界面
+	 */
+	private void loadMain() {
+		Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+		startActivity(intent);
+	}
+
+	/**
+	 * 显示是否更新的对话框
+	 */
+	private void showUpdateDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("提醒")
+				.setMessage("是否更新新版本？新版本更新内容如下" + parseJson.getDesc())
+				.setPositiveButton("更新", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						System.out.println("更新apk");
+					}
+				}).setNegativeButton("取消", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// 进入主界面
+						loadMain();
+					}
+				});
+		builder.show();// 显示对话框
+
+	};
+
+	/**
+	 * 在子线程中进行
+	 * 
+	 * @param parseJson
+	 */
+	private void isNewVersion(UrlBean parseJson) {
+
+		int serverCode = parseJson.getVersionCode();// 获取服务器版本
+
+		long endTimeMillis = System.currentTimeMillis();// 结束时间
+		if (endTimeMillis - startTimeMillis < 3000) {
+			// 设置休眠时间，保证至少睡3秒
+			SystemClock.sleep(3000 - (endTimeMillis - startTimeMillis));
+		}
+		if (serverCode == versionCode) {// 版本相同，进入主界面
+			Message message = Message.obtain();
+			message.what = LOADMAIN;
+			handler.sendMessage(message);
+		} else {
+			Message message = Message.obtain();
+			message.what = SHOWUPDATEDIALOG;
+			handler.sendMessage(message);
+		}
+	}
+
+	/**
+	 * 
+	 * @param json
+	 *            url的json数据
+	 * @return 信息封装对象
+	 */
+	private UrlBean parseJson(StringBuilder json) {
+		UrlBean bean = new UrlBean();
+		JSONObject jsonObj;
+		try {
+
+			jsonObj = new JSONObject(json + "");
+			int versionCode = jsonObj.getInt("version");
+			String url = jsonObj.getString("url");
+			String desc = jsonObj.getString("desc");
+			// 封装数据
+			bean.setVersionCode(versionCode);
+			bean.setUrl(url);
+			bean.setDesc(desc);
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bean;
 	}
 
 	/**
@@ -58,14 +283,13 @@ public class SplashActivity extends ActionBarActivity {
 		// 界面停留在结束状态
 		scale.setFillAfter(true);
 
-		
-		//创建动画集
+		// 创建动画集
 		AnimationSet set = new AnimationSet(true);
 		set.addAnimation(alpha);
 		set.addAnimation(rotate);
 		set.addAnimation(scale);
-		
-		//显示动画
+
+		// 显示动画
 		rl_root.setAnimation(set);
 
 	}
