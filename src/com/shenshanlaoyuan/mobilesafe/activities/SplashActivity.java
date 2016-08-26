@@ -26,11 +26,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +55,7 @@ public class SplashActivity extends ActionBarActivity {
 	private int versionCode;// 版本号
 	private String versionName;// 版本名称
 	private long startTimeMillis;// 开始访问网络的时间
+	private ProgressBar pb_download_progress;//下载新版本的进度条
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,6 +229,7 @@ public class SplashActivity extends ActionBarActivity {
 		}
 
 	};
+	
 
 	/**
 	 * 加载主界面
@@ -286,6 +290,18 @@ public class SplashActivity extends ActionBarActivity {
 
 		utils.download(parseJson.getUrl(), "/mnt/sdcard/xx.apk",
 				new RequestCallBack<File>() {
+			
+					
+
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+						pb_download_progress.setVisibility(View.VISIBLE);//设置进度的显示
+						pb_download_progress.setMax((int) total);//设置进度条的最大值
+						pb_download_progress.setProgress((int) current);//设置当前进度
+						super.onLoading(total, current, isUploading);
+						
+					}
 
 					@Override
 					public void onSuccess(ResponseInfo<File> arg0) {
@@ -422,6 +438,7 @@ public class SplashActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_splash);
 		rl_root = (RelativeLayout) findViewById(R.id.rl_splash_root);
 		tv_versionName = (TextView) findViewById(R.id.tv_splash_version_name);
+		pb_download_progress = (ProgressBar) findViewById(R.id.pb_splash_download_progress);
 
 	}
 
