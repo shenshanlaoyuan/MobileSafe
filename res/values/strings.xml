@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MobileSafe</string>
+    <string name="app_name">手机卫士</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="author">作者：深山老猿</string>
     <string name="version_name">土豆版</string>
+    <string name="home_title">主界面</string>
+    <string name="home_text">你是我的小呀小卫士，怎么爱你都不嫌多，你的强大功能彻底把哥给征服了。。。。。。。</string>
     
 
 </resources>

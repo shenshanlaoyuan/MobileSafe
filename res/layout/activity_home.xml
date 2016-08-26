@@ -3,9 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="主界面"/>
+
+    <TextView
+        style="@style/tv_title"
+        android:text="@string/home_title" />
+
+    <com.shenshanlaoyuan.mobilesafe.view.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="@string/home_text" />
+
+    <GridView
+        android:id="@+id/gv_home_menus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="@drawable/gv_list_selector"
+        android:numColumns="3"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="5dp" >
+    </GridView>
 
 </LinearLayout>
