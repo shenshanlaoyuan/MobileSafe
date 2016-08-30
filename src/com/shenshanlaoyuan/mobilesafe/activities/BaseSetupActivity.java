@@ -13,9 +13,27 @@ public abstract class BaseSetupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		initView();
+		initView();//初始化界面
+		
+		initDate();//初始化数据
+		initEvent();//初始化事件
+		
 	}
-	
+	/**
+	 * 数据的初始化
+	 */
+	public void initDate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * 事件的初始化
+	 */
+	public void initEvent() {
+		
+	}
+
 	/**
 	 * 下一个页面的事件处理
 	 * @param v

@@ -1116,7 +1116,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f09004e;
+        public static final int action_settings=0x7f090050;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1146,7 +1146,7 @@ containing a value of this type.
         public static final int icon=0x7f09002a;
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
-        public static final int iv_item_home_gv_icon=0x7f09004c;
+        public static final int iv_item_home_gv_icon=0x7f09004e;
         public static final int iv_setup2_isbind=0x7f09003e;
         public static final int listMode=0x7f090006;
         public static final int list_item=0x7f090029;
@@ -1179,7 +1179,9 @@ containing a value of this type.
         public static final int textView1=0x7f090043;
         public static final int title=0x7f09002b;
         public static final int top_action_bar=0x7f090020;
-        public static final int tv_item_home_gv_name=0x7f09004d;
+        public static final int tv_friends_item_name=0x7f09004c;
+        public static final int tv_friends_item_phone=0x7f09004d;
+        public static final int tv_item_home_gv_name=0x7f09004f;
         public static final int tv_splash_version_name=0x7f090042;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
@@ -1244,8 +1246,9 @@ containing a value of this type.
         public static final int activity_splash=0x7f03001e;
         public static final int dialog_enter_password=0x7f03001f;
         public static final int dialog_setting_password=0x7f030020;
-        public static final int item_home_gridview=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int item_friend_listview=0x7f030021;
+        public static final int item_home_gridview=0x7f030022;
+        public static final int support_simple_spinner_dropdown_item=0x7f030023;
     }
     public static final class menu {
         public static final int splash=0x7f0c0000;
