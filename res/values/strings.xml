@@ -8,6 +8,8 @@
     <string name="version_name">土豆版</string>
     <string name="home_title">主界面</string>
     <string name="home_text">你是我的小呀小卫士，怎么爱你都不嫌多，你的强大功能彻底把哥给征服了。。。。。。。</string>
-    
+    <string name="activity_sample_device_admin">设备管理员</string>
+    <string name="sample_device_admin">管理员</string>
+    <string name="sample_device_admin_description">开启设备管理员，不开启扣2000块</string>
 
 </resources>

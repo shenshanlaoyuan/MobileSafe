@@ -16,8 +16,15 @@
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.shenshanlaoyuan.mobilesafe" />
+    
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     
 
     <application
@@ -45,7 +52,28 @@
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.FriendsActivity"></activity>
         
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LostFindService"></service>
+         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LocationService"></service>
         
+        <receiver android:name="com.shenshanlaoyuan.mobilesafe.receiver.BootReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        
+         <receiver
+            android:name="com.shenshanlaoyuan.mobilesafe.receiver.DeviceAdminSample"
+            android:description="@string/sample_device_admin_description"
+            android:label="@string/sample_device_admin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
     </application>
+   
 
 </manifest>
