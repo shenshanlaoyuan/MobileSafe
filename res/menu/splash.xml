@@ -4,9 +4,14 @@
     tools:context="com.shenshanlaoyuan.mobilesafe.SplashActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/mn_modify_name"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="修改手机防盗名"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/mn_test_menu"
+        android:orderInCategory="100"
+        android:title="测试"
         app:showAsAction="never"/>
 
 </menu>

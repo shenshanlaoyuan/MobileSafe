@@ -212,6 +212,13 @@ public class HomeActivity extends Activity {
 		gv_menus = (GridView) findViewById(R.id.gv_home_menus);
 	}
 
+	@Override
+	protected void onResume() {
+		//通知Gridview重新取数据
+		adapter.notifyDataSetChanged();
+		super.onResume();
+	}
+	
 	private class MyAdapter extends BaseAdapter {
 
 		@Override
@@ -231,7 +238,16 @@ public class HomeActivity extends Activity {
 					.findViewById(R.id.tv_item_home_gv_name);
 			// 设置数据
 			imageView.setImageResource(icons[position]);
+			
+			
 			textView.setText(names[position]);
+			
+			if (position == 0) {
+				//判断是否存在新的手机防盗名
+				if (!TextUtils.isEmpty(SpTools.getString(getApplicationContext(), MyConstants.LOSTFINDNAME, ""))) {
+					textView.setText(SpTools.getString(getApplicationContext(), MyConstants.LOSTFINDNAME, ""));
+				}
+			}
 			return view;
 		}
 

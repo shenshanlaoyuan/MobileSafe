@@ -50,11 +50,13 @@ public class Setup4Activity extends BaseSetupActivity {
 				//如果选择打钩，开启防盗保护,防盗保护是一个服务
 				if (isChecked) {
 					System.out.println("check true");
+					SpTools.putBoolean(getApplicationContext(), MyConstants.LOSTFIND, true);
 					
 					Intent service = new Intent(Setup4Activity.this, LostFindService.class);
 					startService(service);
 				} else {
 					System.out.println("check false");
+					SpTools.putBoolean(getApplicationContext(), MyConstants.LOSTFIND, false);
 					//关闭服务
 					Intent service = new Intent(Setup4Activity.this, LostFindService.class);
 					stopService(service);

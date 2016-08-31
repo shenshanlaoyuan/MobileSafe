@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 
+import com.shenshanlaoyuan.mobilesafe.activities.Setup4Activity;
+import com.shenshanlaoyuan.mobilesafe.service.LostFindService;
 import com.shenshanlaoyuan.mobilesafe.utils.MyConstants;
 import com.shenshanlaoyuan.mobilesafe.utils.SpTools;
 
@@ -39,6 +41,12 @@ public class BootReceiver extends BroadcastReceiver {
 			
 			sm.sendTextMessage(safeNumber, "", "SIM卡变化了,手机已被盗", null, null);
 		}
+		
+		//自动开启防盗服务
+		if (SpTools.getBoolean(context, MyConstants.LOSTFIND, false)) {
+			Intent service = new Intent(context, LostFindService.class);
+			context.startService(service);
+		} 
 	}
 
 }
