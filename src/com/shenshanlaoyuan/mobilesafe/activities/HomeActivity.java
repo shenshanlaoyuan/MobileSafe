@@ -64,6 +64,11 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断点击位置
 				switch (position) {
+				
+				case 8://设置中心
+					Intent centerIntent = new Intent(HomeActivity.this, SettingCenterActivity.class);
+					startActivity(centerIntent);
+					break;
 				case 0://手机防盗
 					//是否设置过密码，没有设置密码，弹出设置密码的对话框，如果设置密码，登陆的对话框
 					if (TextUtils.isEmpty(SpTools.getString(getApplicationContext(), MyConstants.PASSWORD, ""))) {

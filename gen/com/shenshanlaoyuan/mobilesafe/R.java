@@ -461,6 +461,29 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int logo=0x7f01002d;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mcontent=0x7f01006f;
+        /** 
+             Defines whether a child is limited to draw inside of its bounds or not.
+             This is useful with animations that scale the size of the children to more
+             than 100% for instance. In such a case, this property should be set to false
+             to allow the children to draw outside of their bounds. The default value of
+             this property is true.
+        
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int mtitle=0x7f01006e;
         /**  The type of navigation to use. 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -1091,18 +1114,19 @@ containing a value of this type.
         public static final int callmsgsafe=0x7f02005e;
         public static final int gv_list_selector=0x7f02005f;
         public static final int ic_launcher=0x7f020060;
-        public static final int lock=0x7f020061;
-        public static final int luncher_bg=0x7f020062;
-        public static final int netmanager=0x7f020063;
-        public static final int phone=0x7f020064;
-        public static final int safe=0x7f020065;
-        public static final int settings=0x7f020066;
-        public static final int setup1=0x7f020067;
-        public static final int sky=0x7f020068;
-        public static final int sysoptimize=0x7f020069;
-        public static final int taskmanager=0x7f02006a;
-        public static final int trojan=0x7f02006b;
-        public static final int unlock=0x7f02006c;
+        public static final int list_devider=0x7f020061;
+        public static final int lock=0x7f020062;
+        public static final int luncher_bg=0x7f020063;
+        public static final int netmanager=0x7f020064;
+        public static final int phone=0x7f020065;
+        public static final int safe=0x7f020066;
+        public static final int settings=0x7f020067;
+        public static final int setup1=0x7f020068;
+        public static final int sky=0x7f020069;
+        public static final int sysoptimize=0x7f02006a;
+        public static final int taskmanager=0x7f02006b;
+        public static final int trojan=0x7f02006c;
+        public static final int unlock=0x7f02006d;
     }
     public static final class id {
         public static final int action_bar=0x7f0b001c;
@@ -1126,6 +1150,7 @@ containing a value of this type.
         public static final int bt_dialog_setting_password_cancel=0x7f0b0050;
         public static final int bt_dialog_setting_password_setpass=0x7f0b004f;
         public static final int bt_setup2_bindsim=0x7f0b003f;
+        public static final int cb_settingcenter_autoupdate_checked=0x7f0b0057;
         public static final int cb_setup4_isprotected=0x7f0b0042;
         public static final int checkbox=0x7f0b002d;
         public static final int collapseActionView=0x7f0b0010;
@@ -1154,8 +1179,8 @@ containing a value of this type.
         public static final int list_item=0x7f0b0029;
         public static final int ll_lostfind_menu_bottom=0x7f0b003e;
         public static final int middle=0x7f0b0018;
-        public static final int mn_modify_name=0x7f0b0055;
-        public static final int mn_test_menu=0x7f0b0056;
+        public static final int mn_modify_name=0x7f0b0058;
+        public static final int mn_test_menu=0x7f0b0059;
         public static final int never=0x7f0b0012;
         public static final int none=0x7f0b0019;
         public static final int normal=0x7f0b0007;
@@ -1188,6 +1213,8 @@ containing a value of this type.
         public static final int tv_friends_item_name=0x7f0b0051;
         public static final int tv_friends_item_phone=0x7f0b0052;
         public static final int tv_item_home_gv_name=0x7f0b0054;
+        public static final int tv_settingcenter_autoupdate_content=0x7f0b0056;
+        public static final int tv_settingcenter_autoupdate_title=0x7f0b0055;
         public static final int tv_splash_version_name=0x7f0b0044;
         public static final int up=0x7f0b0021;
         public static final int useLogo=0x7f0b000e;
@@ -1245,17 +1272,19 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_home=0x7f030018;
         public static final int activity_lostfind=0x7f030019;
-        public static final int activity_setup1=0x7f03001a;
-        public static final int activity_setup2=0x7f03001b;
-        public static final int activity_setup3=0x7f03001c;
-        public static final int activity_setup4=0x7f03001d;
-        public static final int activity_splash=0x7f03001e;
-        public static final int dialog_enter_password=0x7f03001f;
-        public static final int dialog_modify_name=0x7f030020;
-        public static final int dialog_setting_password=0x7f030021;
-        public static final int item_friend_listview=0x7f030022;
-        public static final int item_home_gridview=0x7f030023;
-        public static final int support_simple_spinner_dropdown_item=0x7f030024;
+        public static final int activity_settingcenter=0x7f03001a;
+        public static final int activity_setup1=0x7f03001b;
+        public static final int activity_setup2=0x7f03001c;
+        public static final int activity_setup3=0x7f03001d;
+        public static final int activity_setup4=0x7f03001e;
+        public static final int activity_splash=0x7f03001f;
+        public static final int dialog_enter_password=0x7f030020;
+        public static final int dialog_modify_name=0x7f030021;
+        public static final int dialog_setting_password=0x7f030022;
+        public static final int item_friend_listview=0x7f030023;
+        public static final int item_home_gridview=0x7f030024;
+        public static final int item_settingcenter_view=0x7f030025;
+        public static final int support_simple_spinner_dropdown_item=0x7f030026;
     }
     public static final class menu {
         public static final int splash=0x7f0e0000;
@@ -2851,6 +2880,58 @@ containing a value of this type.
           @attr name com.shenshanlaoyuan.mobilesafe:queryHint
         */
         public static final int SearchView_queryHint = 4;
+        /** Attributes that can be used with a SettingCenterItemView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SettingCenterItemView_mcontent com.shenshanlaoyuan.mobilesafe:mcontent}</code></td><td></td></tr>
+           <tr><td><code>{@link #SettingCenterItemView_mtitle com.shenshanlaoyuan.mobilesafe:mtitle}</code></td><td>
+             Defines whether a child is limited to draw inside of its bounds or not.</td></tr>
+           </table>
+           @see #SettingCenterItemView_mcontent
+           @see #SettingCenterItemView_mtitle
+         */
+        public static final int[] SettingCenterItemView = {
+            0x7f01006e, 0x7f01006f
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.shenshanlaoyuan.mobilesafe.R.attr#mcontent}
+          attribute's value can be found in the {@link #SettingCenterItemView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.shenshanlaoyuan.mobilesafe:mcontent
+        */
+        public static final int SettingCenterItemView_mcontent = 1;
+        /**
+          <p>
+          @attr description
+          
+             Defines whether a child is limited to draw inside of its bounds or not.
+             This is useful with animations that scale the size of the children to more
+             than 100% for instance. In such a case, this property should be set to false
+             to allow the children to draw outside of their bounds. The default value of
+             this property is true.
+        
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.shenshanlaoyuan.mobilesafe:mtitle
+        */
+        public static final int SettingCenterItemView_mtitle = 0;
         /** Attributes that can be used with a Spinner.
            <p>Includes the following attributes:</p>
            <table>
