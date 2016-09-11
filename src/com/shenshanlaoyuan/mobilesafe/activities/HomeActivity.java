@@ -64,21 +64,28 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断点击位置
 				switch (position) {
-				
-				case 8://设置中心
-					Intent centerIntent = new Intent(HomeActivity.this, SettingCenterActivity.class);
+				case 1:// 通讯卫士
+					Intent intent = new Intent(HomeActivity.this,
+							TelSmsSafeActivity.class);
+					startActivity(intent);
+					break;
+
+				case 8:// 设置中心
+					Intent centerIntent = new Intent(HomeActivity.this,
+							SettingCenterActivity.class);
 					startActivity(centerIntent);
 					break;
-				case 0://手机防盗
-					//是否设置过密码，没有设置密码，弹出设置密码的对话框，如果设置密码，登陆的对话框
-					if (TextUtils.isEmpty(SpTools.getString(getApplicationContext(), MyConstants.PASSWORD, ""))) {
+				case 0:// 手机防盗
+						// 是否设置过密码，没有设置密码，弹出设置密码的对话框，如果设置密码，登陆的对话框
+					if (TextUtils.isEmpty(SpTools.getString(
+							getApplicationContext(), MyConstants.PASSWORD, ""))) {
 						// 设置密码对话框
 						showSettingPassDialog();
 					} else {
-						//直接输入密码对话框
+						// 直接输入密码对话框
 						showEnterPassDialog();
 					}
-					
+
 					break;
 
 				default:
@@ -99,7 +106,7 @@ public class HomeActivity extends Activity {
 
 		final EditText et_passone = (EditText) view
 				.findViewById(R.id.et_dialog_enter_password_passone);
-		
+
 		Button bt_setpass = (Button) view
 				.findViewById(R.id.bt_dialog_enter_password_login);
 		Button bt_cancel = (Button) view
@@ -113,22 +120,26 @@ public class HomeActivity extends Activity {
 			public void onClick(View v) {
 				// 输入的密码
 				String passone = et_passone.getText().toString().trim();
-				
+
 				if (TextUtils.isEmpty(passone)) {
 					Toast.makeText(getApplicationContext(), "密码不能为空", 0).show();
 					return;
-				}  else {
-					
-					//密码MD5加密
-					passone= Md5Utils.md5(passone);
-					//读取sp中的密码进行判断
-					if (passone.equals(SpTools.getString(getApplicationContext(), MyConstants.PASSWORD, passone))) {
-						//密码相同
-						Intent intent = new Intent(HomeActivity.this,LostFindActivity.class);
+				} else {
+
+					// 密码MD5加密
+					passone = Md5Utils.md5(passone);
+					// 读取sp中的密码进行判断
+					if (passone.equals(SpTools.getString(
+							getApplicationContext(), MyConstants.PASSWORD,
+							passone))) {
+						// 密码相同
+						Intent intent = new Intent(HomeActivity.this,
+								LostFindActivity.class);
 						startActivity(intent);
 					} else {
-						//密码不正确
-						Toast.makeText(getApplicationContext(), "密码输入错误", 0).show();
+						// 密码不正确
+						Toast.makeText(getApplicationContext(), "密码输入错误", 0)
+								.show();
 						return;
 					}
 					dialog.dismiss();
@@ -176,14 +187,15 @@ public class HomeActivity extends Activity {
 				if (TextUtils.isEmpty(passone) || TextUtils.isEmpty(passtwo)) {
 					Toast.makeText(getApplicationContext(), "密码不能为空", 0).show();
 					return;
-				} else if(!passone.equals(passtwo)) {
+				} else if (!passone.equals(passtwo)) {
 					Toast.makeText(getApplicationContext(), "密码不一致", 0).show();
 					return;
 				} else {
 					// 保存数据
-					//密码MD5加密
-					passone= Md5Utils.md5(passone);
-					SpTools.putString(getApplicationContext(), MyConstants.PASSWORD, passone);
+					// 密码MD5加密
+					passone = Md5Utils.md5(passone);
+					SpTools.putString(getApplicationContext(),
+							MyConstants.PASSWORD, passone);
 					Toast.makeText(getApplicationContext(), "保存成功", 0).show();
 					dialog.dismiss();
 				}
@@ -219,11 +231,11 @@ public class HomeActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		//通知Gridview重新取数据
+		// 通知Gridview重新取数据
 		adapter.notifyDataSetChanged();
 		super.onResume();
 	}
-	
+
 	private class MyAdapter extends BaseAdapter {
 
 		@Override
@@ -243,14 +255,15 @@ public class HomeActivity extends Activity {
 					.findViewById(R.id.tv_item_home_gv_name);
 			// 设置数据
 			imageView.setImageResource(icons[position]);
-			
-			
+
 			textView.setText(names[position]);
-			
+
 			if (position == 0) {
-				//判断是否存在新的手机防盗名
-				if (!TextUtils.isEmpty(SpTools.getString(getApplicationContext(), MyConstants.LOSTFINDNAME, ""))) {
-					textView.setText(SpTools.getString(getApplicationContext(), MyConstants.LOSTFINDNAME, ""));
+				// 判断是否存在新的手机防盗名
+				if (!TextUtils.isEmpty(SpTools.getString(
+						getApplicationContext(), MyConstants.LOSTFINDNAME, ""))) {
+					textView.setText(SpTools.getString(getApplicationContext(),
+							MyConstants.LOSTFINDNAME, ""));
 				}
 			}
 			return view;

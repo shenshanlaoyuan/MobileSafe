@@ -46,11 +46,14 @@
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.HomeActivity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.LostFindActivity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.Setup1Activity"></activity>
+        
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.Setup2Activity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.Setup3Activity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.Setup4Activity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.FriendsActivity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.SettingCenterActivity"></activity>
+        <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.TelSmsSafeActivity"></activity>
+        
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LostFindService"></service>
          <service android:name="com.shenshanlaoyuan.mobilesafe.service.LocationService"></service>
         
