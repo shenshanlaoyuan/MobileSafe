@@ -9,4 +9,5 @@ public interface MyConstants {
 	String SAFENUMBER = "safenumber";//安全号码
 	String LOSTFIND = "lostfind";//是否自动开启服务
 	String LOSTFINDNAME = "lostfindname";//手机防盗名
+	String AUTOUPDATE = "autoupdate";//自动更新设置
 }

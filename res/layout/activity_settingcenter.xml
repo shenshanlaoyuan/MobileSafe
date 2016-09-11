@@ -12,6 +12,7 @@
     <com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/sciv_setting_center_autoupdate"
         safe:mcontent="自动更新已经关闭-自动更新已经打开"
         safe:mtitle="自动更新设置" >
     </com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView>

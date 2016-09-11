@@ -29,6 +29,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
@@ -43,6 +44,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.shenshanlaoyuan.mobilesafe.R;
 import com.shenshanlaoyuan.mobilesafe.domain.UrlBean;
+import com.shenshanlaoyuan.mobilesafe.utils.MyConstants;
+import com.shenshanlaoyuan.mobilesafe.utils.SpTools;
 
 public class SplashActivity extends ActionBarActivity {
 
@@ -55,7 +58,7 @@ public class SplashActivity extends ActionBarActivity {
 	private int versionCode;// 版本号
 	private String versionName;// 版本名称
 	private long startTimeMillis;// 开始访问网络的时间
-	private ProgressBar pb_download_progress;//下载新版本的进度条
+	private ProgressBar pb_download_progress;// 下载新版本的进度条
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +70,43 @@ public class SplashActivity extends ActionBarActivity {
 		initAnimation();
 		// 初始化数据
 		initDate();
+		
+		
+		//耗时的功能封装，只要耗时的处理，都放到此方法
+				//timeInitialization() 如下：
+		
+		
+/*
+		判断是否检测服务器版本
+		if (SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,
+				false)) {
+			// 检查服务器的版本
+			checkVersion();
+		} else {
+			
+			new Thread() {
+				public void run() {
+					SystemClock.sleep(3000);
+					handler.obtainMessage(LOADMAIN).sendToTarget();
+				};
+			}.start();
+		}*/
 
-		// 检查服务器的版本
-		checkVersion();
+	}
+	
+
+	/**
+	 * 耗时的功能封装，只要耗时的处理，都放到此方法
+	 */
+	private void timeInitialization(){
+		//一开始动画，就应该干耗时的业务（网络，本地数据初始化，数据的拷贝等）
+		if (SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE, false)) {
+			//true 自动更新
+			// 检测服务器的版本
+			checkVersion();
+		}
+		//增加自己的耗时功能处理
+		
 	}
 
 	/**
@@ -165,7 +202,7 @@ public class SplashActivity extends ActionBarActivity {
 						message.what = ERROR;
 						message.arg1 = errorCode;
 					}
-					//保证Splash界面停留不少于3秒
+					// 保证Splash界面停留不少于3秒
 					long endTimeMillis = System.currentTimeMillis();// 结束时间
 					if (endTimeMillis - startTimeMillis < 3000) {
 						// 设置休眠时间，保证至少睡3秒
@@ -229,7 +266,6 @@ public class SplashActivity extends ActionBarActivity {
 		}
 
 	};
-	
 
 	/**
 	 * 加载主界面
@@ -290,17 +326,15 @@ public class SplashActivity extends ActionBarActivity {
 
 		utils.download(parseJson.getUrl(), "/mnt/sdcard/xx.apk",
 				new RequestCallBack<File>() {
-			
-					
 
 					@Override
 					public void onLoading(long total, long current,
 							boolean isUploading) {
-						pb_download_progress.setVisibility(View.VISIBLE);//设置进度的显示
-						pb_download_progress.setMax((int) total);//设置进度条的最大值
-						pb_download_progress.setProgress((int) current);//设置当前进度
+						pb_download_progress.setVisibility(View.VISIBLE);// 设置进度的显示
+						pb_download_progress.setMax((int) total);// 设置进度条的最大值
+						pb_download_progress.setProgress((int) current);// 设置当前进度
 						super.onLoading(total, current, isUploading);
-						
+
 					}
 
 					@Override
@@ -424,7 +458,33 @@ public class SplashActivity extends ActionBarActivity {
 		set.addAnimation(alpha);
 		set.addAnimation(rotate);
 		set.addAnimation(scale);
-
+		set.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+				// TODO Auto-generated method stub
+				//耗时的功能统一处理封装
+				timeInitialization();
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				// TODO Auto-generated method stub
+				
+				//判断是否进行服务器版本的检测
+				if (!SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,
+						false)) {
+					//不做版本检测，直接进入主界面
+					loadMain();
+				}
+			}
+		});
 		// 显示动画
 		rl_root.setAnimation(set);
 
