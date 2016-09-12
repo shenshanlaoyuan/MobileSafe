@@ -22,6 +22,13 @@ public class MyTest extends AndroidTestCase {
 		dao.update("12345670", BlackTable.ALL);
 	}
 	
+	public void testGetMoreDatas(){
+		BlackDao dao = new BlackDao(getContext());
+		//获取所有黑名单数据
+		List<BlackBean> datas = dao.getMoreDatas(20, 0);
+		System.out.println(datas);
+	}
+	
 	public void testFindAllBlackDatas(){
 		BlackDao dao = new BlackDao(getContext());
 		//获取所有黑名单数据
@@ -32,7 +39,7 @@ public class MyTest extends AndroidTestCase {
  
 	public void testAddBlackNumber(){
 		BlackDao dao = new BlackDao(getContext());
-		for (int i = 0; i < 200;i++){
+		for (int i = 0; i < 50;i++){
 			dao.add("1234567" + i, BlackTable.SMS);
 		}
 	}
