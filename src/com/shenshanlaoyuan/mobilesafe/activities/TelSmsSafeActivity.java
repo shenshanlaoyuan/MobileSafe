@@ -6,12 +6,17 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
@@ -20,6 +25,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +56,93 @@ public class TelSmsSafeActivity extends Activity {
 		initView();// 初始化界面
 		initDate();// 初始化数据
 		initEvent();// 初始化事件
+		initPopupWindow();// 弹出窗体
+	}
+	
+	private void showPopupWindow() {
+		if (pw != null && pw.isShowing()) {
+			pw.dismiss();// 关闭
+		} else {
+			int[] location = new int[2];
+			// 获取添加按钮的坐标
+			bt_addSafeNumber.getLocationInWindow(location);
+
+			// 显示动画
+			contentView.startAnimation(sa);
+			// 设置右上角对齐
+			pw.showAtLocation(bt_addSafeNumber, Gravity.RIGHT| Gravity.TOP,
+					location[0] - (getWindowManager().getDefaultDisplay().getWidth() - bt_addSafeNumber.getWidth()),
+					location[1] + bt_addSafeNumber.getHeight());
+		}
+	}
+
+	private void closePopupWindow() {
+		if (pw != null && pw.isShowing()) {
+			pw.dismiss();
+		}
+	}
+
+	private void initPopupWindow() {
+		// TODO Auto-generated method stub
+
+		contentView = View.inflate(getApplicationContext(),
+				R.layout.popup_blacknumber_item, null);
+
+		// 手动添加
+		TextView tv_shoudong = (TextView) contentView
+				.findViewById(R.id.tv_popup_black_shoudong);
+		// 联系人添加
+		TextView tv_contact = (TextView) contentView
+				.findViewById(R.id.tv_popup_black_contacts);
+		// 电话添加
+		TextView tv_phonelog = (TextView) contentView
+				.findViewById(R.id.tv_popup_black_phonelog);
+		// 短信添加
+		TextView tv_smslog = (TextView) contentView
+				.findViewById(R.id.tv_popup_black_smslog);
+
+		View.OnClickListener listener = new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				switch (v.getId()) {
+				case R.id.tv_popup_black_shoudong:// 手动导入
+					System.out.println("手动导入");
+					break;
+				case R.id.tv_popup_black_contacts:// 从联系人导入
+					System.out.println("从联系人导入");
+
+					break;
+				case R.id.tv_popup_black_phonelog: // 从电话日志导入
+					System.out.println("从电话日志导入");
+					break;
+				case R.id.tv_popup_black_smslog:// 从短信导入
+					System.out.println("从短信导入");
+					break;
+
+				default:
+					break;
+				}
+				
+				closePopupWindow();//关闭弹出窗体
+			}
+		};
+		// 给四个组件添加事件
+		tv_shoudong.setOnClickListener(listener);
+		tv_contact.setOnClickListener(listener);
+		tv_phonelog.setOnClickListener(listener);
+		tv_smslog.setOnClickListener(listener);
+
+		pw = new PopupWindow(contentView, -2, -2);
+
+		// 显示动画要有背景
+		pw.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+		// 窗体显示的动画
+		sa = new ScaleAnimation(1, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f,
+				Animation.RELATIVE_TO_SELF, 0f);
+		sa.setDuration(1000);
 	}
 
 	/**
@@ -151,6 +244,9 @@ public class TelSmsSafeActivity extends Activity {
 	private BlackDao dao;
 	private MyAdapter adapter;
 	private AlertDialog dialog;
+	private ScaleAnimation sa;
+	private View contentView;
+	private PopupWindow pw;
 
 	private void initDate() {
 		// TODO Auto-generated method stub
@@ -210,6 +306,11 @@ public class TelSmsSafeActivity extends Activity {
 	 * @param view
 	 */
 	public void addBlackNumber(View v) {
+		// showInputBlackNumberDialog();
+		showPopupWindow();
+	}
+
+	private void showInputBlackNumberDialog() {
 		AlertDialog.Builder ab = new AlertDialog.Builder(
 				TelSmsSafeActivity.this);
 		View view = View.inflate(getApplicationContext(),
@@ -265,36 +366,35 @@ public class TelSmsSafeActivity extends Activity {
 
 				int mode = 0;
 				if (cb_phone.isChecked()) {
-					mode |= BlackTable.TEL;//设置电话拦截模式
+					mode |= BlackTable.TEL;// 设置电话拦截模式
 				}
 
 				if (cb_sms.isChecked()) {
-					mode |= BlackTable.SMS;//设置短信拦截模式
+					mode |= BlackTable.SMS;// 设置短信拦截模式
 				}
 				BlackBean bean = new BlackBean();
 				bean.setPhone(phone);
 				bean.setMode(mode);
-				
-				dao.add(bean);//添加数据到黑名单表中
-				
+
+				dao.add(bean);// 添加数据到黑名单表中
+
 				datas.remove(bean);// 该删除方法要靠equals和hashCode两个方法共同判断数据是否一致
-				
-				datas.add(0, bean);//添加数据到容器中
-				
-				//listview 显示第一条数据
-				//lv_safenumbers.setSelection(0);
+
+				datas.add(0, bean);// 添加数据到容器中
+
+				// listview 显示第一条数据
+				// lv_safenumbers.setSelection(0);
 				adapter = new MyAdapter();
 				lv_safenumbers.setAdapter(adapter);
-				
+
 				dialog.dismiss();
-				
+
 			}
 		});
 		ab.setView(view);
 
 		dialog = ab.create();
 		dialog.show();
-
 	}
 
 	private class MyAdapter extends BaseAdapter {

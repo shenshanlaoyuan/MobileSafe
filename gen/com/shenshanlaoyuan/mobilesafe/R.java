@@ -1190,8 +1190,8 @@ containing a value of this type.
         public static final int ll_lostfind_menu_bottom=0x7f0b003e;
         public static final int lv_telsms_safenumbers=0x7f0b0049;
         public static final int middle=0x7f0b0018;
-        public static final int mn_modify_name=0x7f0b0065;
-        public static final int mn_test_menu=0x7f0b0066;
+        public static final int mn_modify_name=0x7f0b0069;
+        public static final int mn_test_menu=0x7f0b006a;
         public static final int never=0x7f0b0012;
         public static final int none=0x7f0b0019;
         public static final int normal=0x7f0b0007;
@@ -1226,6 +1226,10 @@ containing a value of this type.
         public static final int tv_friends_item_name=0x7f0b005b;
         public static final int tv_friends_item_phone=0x7f0b005c;
         public static final int tv_item_home_gv_name=0x7f0b005e;
+        public static final int tv_popup_black_contacts=0x7f0b0066;
+        public static final int tv_popup_black_phonelog=0x7f0b0067;
+        public static final int tv_popup_black_shoudong=0x7f0b0065;
+        public static final int tv_popup_black_smslog=0x7f0b0068;
         public static final int tv_settingcenter_autoupdate_content=0x7f0b0060;
         public static final int tv_settingcenter_autoupdate_title=0x7f0b005f;
         public static final int tv_splash_version_name=0x7f0b0045;
@@ -1303,7 +1307,8 @@ containing a value of this type.
         public static final int item_home_gridview=0x7f030026;
         public static final int item_settingcenter_view=0x7f030027;
         public static final int item_telsmssafe_listview=0x7f030028;
-        public static final int support_simple_spinner_dropdown_item=0x7f030029;
+        public static final int popup_blacknumber_item=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
     }
     public static final class menu {
         public static final int splash=0x7f0e0000;

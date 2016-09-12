@@ -324,8 +324,8 @@ int id list_item 0x7f0b0029
 int id ll_lostfind_menu_bottom 0x7f0b003e
 int id lv_telsms_safenumbers 0x7f0b0049
 int id middle 0x7f0b0018
-int id mn_modify_name 0x7f0b0065
-int id mn_test_menu 0x7f0b0066
+int id mn_modify_name 0x7f0b0069
+int id mn_test_menu 0x7f0b006a
 int id never 0x7f0b0012
 int id none 0x7f0b0019
 int id normal 0x7f0b0007
@@ -360,6 +360,10 @@ int id top_action_bar 0x7f0b0020
 int id tv_friends_item_name 0x7f0b005b
 int id tv_friends_item_phone 0x7f0b005c
 int id tv_item_home_gv_name 0x7f0b005e
+int id tv_popup_black_contacts 0x7f0b0066
+int id tv_popup_black_phonelog 0x7f0b0067
+int id tv_popup_black_shoudong 0x7f0b0065
+int id tv_popup_black_smslog 0x7f0b0068
 int id tv_settingcenter_autoupdate_content 0x7f0b0060
 int id tv_settingcenter_autoupdate_title 0x7f0b005f
 int id tv_splash_version_name 0x7f0b0045
@@ -411,7 +415,8 @@ int layout item_friend_listview 0x7f030025
 int layout item_home_gridview 0x7f030026
 int layout item_settingcenter_view 0x7f030027
 int layout item_telsmssafe_listview 0x7f030028
-int layout support_simple_spinner_dropdown_item 0x7f030029
+int layout popup_blacknumber_item 0x7f030029
+int layout support_simple_spinner_dropdown_item 0x7f03002a
 int menu splash 0x7f0e0000
 int raw qqqg 0x7f060000
 int string abc_action_bar_home_description 0x7f0c0001
