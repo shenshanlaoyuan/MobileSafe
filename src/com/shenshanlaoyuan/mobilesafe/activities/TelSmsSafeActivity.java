@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -33,7 +36,7 @@ public class TelSmsSafeActivity extends Activity {
 	private Button bt_addSafeNumber;
 	private TextView tv_nodata;
 	private ProgressBar pb_loading;
-	private List<BlackBean> moreDatas;//分批加载的容器
+	private List<BlackBean> moreDatas;// 分批加载的容器
 
 	private static final int MOREDATASCOUNTS = 20;// 分批加载的数据个数
 
@@ -91,7 +94,7 @@ public class TelSmsSafeActivity extends Activity {
 
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			
+
 			switch (msg.what) {
 			case LOADING:// 正在加载数据
 				// 显示加载数据的进度
@@ -116,7 +119,7 @@ public class TelSmsSafeActivity extends Activity {
 
 					// 隐藏加载数据的进度
 					pb_loading.setVisibility(View.GONE);
-					
+
 					// 更新数据
 					adapter.notifyDataSetChanged();// 通知listview重新去adapter中的数据
 
@@ -127,7 +130,7 @@ public class TelSmsSafeActivity extends Activity {
 								.show();
 						return;
 					}
-				
+
 					// 没有数据
 					// 隐藏listview
 					lv_safenumbers.setVisibility(View.GONE);
@@ -147,19 +150,18 @@ public class TelSmsSafeActivity extends Activity {
 	};
 	private BlackDao dao;
 	private MyAdapter adapter;
+	private AlertDialog dialog;
 
 	private void initDate() {
 		// TODO Auto-generated method stub
 
 		new Thread() {
-			
 
 			public void run() {
 
 				// 取数据之前，发个消息显示正在加载数据的进度条
 				handler.obtainMessage(LOADING).sendToTarget();
-				moreDatas = dao.getMoreDatas(MOREDATASCOUNTS,
-						datas.size());
+				moreDatas = dao.getMoreDatas(MOREDATASCOUNTS, datas.size());
 
 				datas.addAll(moreDatas);// 把一个容器所有数据加进来
 
@@ -202,6 +204,99 @@ public class TelSmsSafeActivity extends Activity {
 		ImageView iv_delete;
 	}
 
+	/**
+	 * 添加黑名单号码
+	 * 
+	 * @param view
+	 */
+	public void addBlackNumber(View v) {
+		AlertDialog.Builder ab = new AlertDialog.Builder(
+				TelSmsSafeActivity.this);
+		View view = View.inflate(getApplicationContext(),
+				R.layout.dialog_addblacknumber, null);
+
+		// 黑名单号码编辑框
+		final EditText et_blackNumber = (EditText) view
+				.findViewById(R.id.et_telsmssafe_blacknumber);
+
+		// 短信拦截复选框
+		final CheckBox cb_sms = (CheckBox) view
+				.findViewById(R.id.cb_telsmssafe_smsmode);
+
+		// 电话拦截复选框
+		final CheckBox cb_phone = (CheckBox) view
+				.findViewById(R.id.cb_telsmssafe_phonemode);
+
+		// 添加黑名单号码按钮
+		Button bt_add = (Button) view.findViewById(R.id.bt_telsmssafe_add);
+
+		// 取消添加黑名单号码按钮
+		Button bt_cancel = (Button) view
+				.findViewById(R.id.bt_telsmssafe_cancel);
+
+		bt_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				// 取消添加黑名单
+				dialog.dismiss();
+			}
+		});
+
+		bt_add.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				// 添加黑名单号码
+
+				String phone = et_blackNumber.getText().toString().trim();
+
+				if (TextUtils.isEmpty(phone)) {
+					Toast.makeText(getApplicationContext(), "号码不能为空", 1).show();
+					return;
+				}
+				if (!cb_phone.isChecked() && !cb_sms.isChecked()) {
+					Toast.makeText(getApplicationContext(), "至少要勾选一个复选框", 1)
+							.show();
+					return;
+				}
+
+				int mode = 0;
+				if (cb_phone.isChecked()) {
+					mode |= BlackTable.TEL;//设置电话拦截模式
+				}
+
+				if (cb_sms.isChecked()) {
+					mode |= BlackTable.SMS;//设置短信拦截模式
+				}
+				BlackBean bean = new BlackBean();
+				bean.setPhone(phone);
+				bean.setMode(mode);
+				
+				dao.add(bean);//添加数据到黑名单表中
+				
+				datas.remove(bean);// 该删除方法要靠equals和hashCode两个方法共同判断数据是否一致
+				
+				datas.add(0, bean);//添加数据到容器中
+				
+				//listview 显示第一条数据
+				//lv_safenumbers.setSelection(0);
+				adapter = new MyAdapter();
+				lv_safenumbers.setAdapter(adapter);
+				
+				dialog.dismiss();
+				
+			}
+		});
+		ab.setView(view);
+
+		dialog = ab.create();
+		dialog.show();
+
+	}
+
 	private class MyAdapter extends BaseAdapter {
 
 		@Override
@@ -223,7 +318,8 @@ public class TelSmsSafeActivity extends Activity {
 		}
 
 		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
 			// TODO Auto-generated method stub
 			ItemView itemView = null;
 			if (convertView == null) {
@@ -268,30 +364,33 @@ public class TelSmsSafeActivity extends Activity {
 			default:
 				break;
 			}
-			//删除一条数据
+			// 删除一条数据
 			itemView.iv_delete.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
-					
-					AlertDialog.Builder ab = new AlertDialog.Builder(TelSmsSafeActivity.this);
+
+					AlertDialog.Builder ab = new AlertDialog.Builder(
+							TelSmsSafeActivity.this);
 					ab.setTitle("注意");
 					ab.setMessage("真的要删除吗？");
-					ab.setPositiveButton("删除", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							
-							//从数据库中删除当前
-							dao.delete(bean.getPhone());
-							//从容器中删除对应数据
-							datas.remove(position);
-							
-							// 通知界面更新数据，让用户看到删除数据不存在
-							adapter.notifyDataSetChanged();// 只是让listview重新去当前显示位置的数据
-						}
-					});
-					
+					ab.setPositiveButton("删除",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+									// 从数据库中删除当前
+									dao.delete(bean.getPhone());
+									// 从容器中删除对应数据
+									datas.remove(position);
+
+									// 通知界面更新数据，让用户看到删除数据不存在
+									adapter.notifyDataSetChanged();// 只是让listview重新去当前显示位置的数据
+								}
+							});
+
 					ab.setNegativeButton("取消", null);
 					ab.show();
 				}

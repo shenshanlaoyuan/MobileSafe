@@ -19,38 +19,39 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
+            android:onClick="addBlackNumber"
             android:text="添加" />
     </RelativeLayout>
 
-   <FrameLayout
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <!-- listView -->
 
         <ListView
-            android:fastScrollEnabled="true"
-            android:visibility="gone"
             android:id="@+id/lv_telsms_safenumbers"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent"
+            android:fastScrollEnabled="true"
+            android:visibility="gone" >
         </ListView>
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_telsms_nodata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="没有数据"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="gone" />
 
         <ProgressBar
-            android:visibility="gone"
             android:id="@+id/pb_telsms_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
     </FrameLayout>
 
 </LinearLayout>

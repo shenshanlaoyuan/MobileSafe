@@ -38,7 +38,7 @@ public class BlackDao {
 		// 获取blacktb的所有数据游标 (2 + 3) + ""
 		Cursor cursor = database.rawQuery("select " + BlackTable.PHONE + ","
 				+ BlackTable.MODE + " from " + BlackTable.BLACKTABLE
-				+ " order by _id limit ?,? ", new String[] {
+				+ " order by _id desc limit ?,? ", new String[] {
 				startIndex + "", datasNumber + "" });
 
 		while (cursor.moveToNext()) {
@@ -146,6 +146,9 @@ public class BlackDao {
 	 *            拦截模式
 	 */
 	public void add(String phone, int mode) {
+		//添加前先删除重复的数据
+		delete(phone);
+		
 		// 获取黑名单数据库
 		SQLiteDatabase db = blackDB.getWritableDatabase();
 
