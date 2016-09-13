@@ -64,10 +64,20 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断点击位置
 				switch (position) {
+				case 7:// 高级工具
+				{
+					Intent intent = new Intent(HomeActivity.this,
+							AToolActivity.class);
+					startActivity(intent);
+				}
+					break;
+
 				case 1:// 通讯卫士
+				{
 					Intent intent = new Intent(HomeActivity.this,
 							TelSmsSafeActivity.class);
 					startActivity(intent);
+				}
 					break;
 
 				case 8:// 设置中心

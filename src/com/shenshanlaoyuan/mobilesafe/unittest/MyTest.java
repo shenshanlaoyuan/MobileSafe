@@ -7,10 +7,16 @@ import android.test.AndroidTestCase;
 import com.shenshanlaoyuan.mobilesafe.dao.BlackDao;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackBean;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackTable;
+import com.shenshanlaoyuan.mobilesafe.engine.PhoneLocationEngine;
 import com.shenshanlaoyuan.mobilesafe.engine.ReadContantsEngine;
 import com.shenshanlaoyuan.mobilesafe.utils.ServiceUtils;
 
 public class MyTest extends AndroidTestCase {
+	
+	public void testMobileQuery(){
+		
+		System.out.println(PhoneLocationEngine.mobileQuery("1343056", getContext()));
+	}
 	
 	public void testDelete(){
 		BlackDao dao = new BlackDao(getContext());

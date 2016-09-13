@@ -2,6 +2,8 @@ package com.shenshanlaoyuan.mobilesafe.activities;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,6 +22,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -70,43 +73,101 @@ public class SplashActivity extends ActionBarActivity {
 		initAnimation();
 		// 初始化数据
 		initDate();
-		
-		
-		//耗时的功能封装，只要耗时的处理，都放到此方法
-				//timeInitialization() 如下：
-		
-		
-/*
-		判断是否检测服务器版本
-		if (SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,
-				false)) {
-			// 检查服务器的版本
-			checkVersion();
-		} else {
-			
-			new Thread() {
-				public void run() {
-					SystemClock.sleep(3000);
-					handler.obtainMessage(LOADMAIN).sendToTarget();
-				};
-			}.start();
-		}*/
+		// 拷贝数据库到本地
+		copyDB("address.db");
+
+		// 耗时的功能封装，只要耗时的处理，都放到此方法
+		// timeInitialization() 如下：
+
+		/*
+		 * 判断是否检测服务器版本 if (SpTools.getBoolean(getApplicationContext(),
+		 * MyConstants.AUTOUPDATE, false)) { // 检查服务器的版本 checkVersion(); } else
+		 * {
+		 * 
+		 * new Thread() { public void run() { SystemClock.sleep(3000);
+		 * handler.obtainMessage(LOADMAIN).sendToTarget(); }; }.start(); }
+		 */
 
 	}
-	
+
+	/**
+	 * 把assert目录下文件拷贝到本地(/data/data/包名/files)
+	 * 
+	 * @param dbName
+	 *            assert目录下的文件名
+	 * 
+	 */
+	private void copyDB(final String dbName) {
+
+		
+			new Thread(){
+				public void run() {
+					try {
+						
+						//判断文件是否存在，如果存在不需要拷贝
+						File file = new File("/data/data/"+getPackageName() + "/files/" + dbName);
+						if (file.exists()) {//文件存在
+							return;
+						}
+						//文件拷贝
+						fileCopy(dbName);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				};
+			}.start();
+		
+
+		
+
+	}
+
+	private void fileCopy(String dbName) throws IOException,
+			FileNotFoundException {
+		AssetManager assetManager = getAssets();
+		InputStream is = assetManager.open(dbName);
+
+		// 输出流
+		FileOutputStream fos = openFileOutput(dbName, MODE_PRIVATE);
+
+		// 流的拷贝
+		byte[] buffer = new byte[10240];
+
+		int len = is.read(buffer);
+		int counts = 1;
+		while (len != -1) {
+			fos.write(buffer, 0, len);
+
+			if (counts % 10 == 0) {
+				fos.flush();//刷新缓冲区
+			}
+			len = is.read(buffer);
+			counts++;
+		}
+		
+		fos.flush();
+		fos.close();
+		is.close();
+	}
 
 	/**
 	 * 耗时的功能封装，只要耗时的处理，都放到此方法
 	 */
-	private void timeInitialization(){
-		//一开始动画，就应该干耗时的业务（网络，本地数据初始化，数据的拷贝等）
-		if (SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE, false)) {
-			//true 自动更新
+	private void timeInitialization() {
+		// 一开始动画，就应该干耗时的业务（网络，本地数据初始化，数据的拷贝等）
+		if (SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,
+				false)) {
+			// true 自动更新
 			// 检测服务器的版本
 			checkVersion();
 		}
-		//增加自己的耗时功能处理
-		
+		// 增加自己的耗时功能处理
+
 	}
 
 	/**
@@ -459,28 +520,28 @@ public class SplashActivity extends ActionBarActivity {
 		set.addAnimation(rotate);
 		set.addAnimation(scale);
 		set.setAnimationListener(new AnimationListener() {
-			
+
 			@Override
 			public void onAnimationStart(Animation animation) {
 				// TODO Auto-generated method stub
-				//耗时的功能统一处理封装
+				// 耗时的功能统一处理封装
 				timeInitialization();
 			}
-			
+
 			@Override
 			public void onAnimationRepeat(Animation animation) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
-				
-				//判断是否进行服务器版本的检测
-				if (!SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,
-						false)) {
-					//不做版本检测，直接进入主界面
+
+				// 判断是否进行服务器版本的检测
+				if (!SpTools.getBoolean(getApplicationContext(),
+						MyConstants.AUTOUPDATE, false)) {
+					// 不做版本检测，直接进入主界面
 					loadMain();
 				}
 			}
