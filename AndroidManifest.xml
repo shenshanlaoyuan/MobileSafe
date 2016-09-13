@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     
 
     <application
@@ -43,6 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.CallLogActivity"></activity>
+         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.SmsLogActivity"></activity>
+         
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.HomeActivity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.LostFindActivity"></activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.Setup1Activity"></activity>

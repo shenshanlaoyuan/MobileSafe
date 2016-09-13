@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import com.shenshanlaoyuan.mobilesafe.R;
 import com.shenshanlaoyuan.mobilesafe.dao.BlackDao;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackBean;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackTable;
+import com.shenshanlaoyuan.mobilesafe.utils.MyConstants;
 
 public class TelSmsSafeActivity extends Activity {
 	protected static final int LOADING = 1;
@@ -58,7 +60,7 @@ public class TelSmsSafeActivity extends Activity {
 		initEvent();// 初始化事件
 		initPopupWindow();// 弹出窗体
 	}
-	
+
 	private void showPopupWindow() {
 		if (pw != null && pw.isShowing()) {
 			pw.dismiss();// 关闭
@@ -70,8 +72,10 @@ public class TelSmsSafeActivity extends Activity {
 			// 显示动画
 			contentView.startAnimation(sa);
 			// 设置右上角对齐
-			pw.showAtLocation(bt_addSafeNumber, Gravity.RIGHT| Gravity.TOP,
-					location[0] - (getWindowManager().getDefaultDisplay().getWidth() - bt_addSafeNumber.getWidth()),
+			pw.showAtLocation(bt_addSafeNumber, Gravity.RIGHT | Gravity.TOP,
+					location[0]
+							- (getWindowManager().getDefaultDisplay()
+									.getWidth() - bt_addSafeNumber.getWidth()),
 					location[1] + bt_addSafeNumber.getHeight());
 		}
 	}
@@ -80,6 +84,20 @@ public class TelSmsSafeActivity extends Activity {
 		if (pw != null && pw.isShowing()) {
 			pw.dismiss();
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// 获取联系人的电话号码
+		if (data != null) {
+			// 用户点击条目获取结果
+			String phone = data.getStringExtra(MyConstants.SAFENUMBER);
+			showInputBlackNumberDialog(phone);
+		} else {
+			// 用户点击返回键触发事件
+		}
+
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private void initPopupWindow() {
@@ -108,24 +126,42 @@ public class TelSmsSafeActivity extends Activity {
 				// TODO Auto-generated method stub
 				switch (v.getId()) {
 				case R.id.tv_popup_black_shoudong:// 手动导入
-					System.out.println("手动导入");
+
+					showInputBlackNumberDialog("");
 					break;
 				case R.id.tv_popup_black_contacts:// 从联系人导入
-					System.out.println("从联系人导入");
+					// System.out.println("从联系人导入");
+				{
+					Intent intent = new Intent(TelSmsSafeActivity.this,
+							FriendsActivity.class);
+					startActivityForResult(intent, 1);
+				}
 
 					break;
 				case R.id.tv_popup_black_phonelog: // 从电话日志导入
-					System.out.println("从电话日志导入");
+					// System.out.println("从电话日志导入");
+				{
+					Intent intent = new Intent(TelSmsSafeActivity.this,
+							CallLogActivity.class);
+					startActivityForResult(intent, 1);
+				}
 					break;
 				case R.id.tv_popup_black_smslog:// 从短信导入
-					System.out.println("从短信导入");
+					// System.out.println("从短信导入");
+
+				{
+					Intent intent = new Intent(TelSmsSafeActivity.this,
+							SmsLogActivity.class);
+					startActivityForResult(intent, 1);
+				}
+
 					break;
 
 				default:
 					break;
 				}
-				
-				closePopupWindow();//关闭弹出窗体
+
+				closePopupWindow();// 关闭弹出窗体
 			}
 		};
 		// 给四个组件添加事件
@@ -310,7 +346,7 @@ public class TelSmsSafeActivity extends Activity {
 		showPopupWindow();
 	}
 
-	private void showInputBlackNumberDialog() {
+	private void showInputBlackNumberDialog(String phone) {
 		AlertDialog.Builder ab = new AlertDialog.Builder(
 				TelSmsSafeActivity.this);
 		View view = View.inflate(getApplicationContext(),
@@ -319,6 +355,8 @@ public class TelSmsSafeActivity extends Activity {
 		// 黑名单号码编辑框
 		final EditText et_blackNumber = (EditText) view
 				.findViewById(R.id.et_telsmssafe_blacknumber);
+		// 设置初始的黑名单号码
+		et_blackNumber.setText(phone);
 
 		// 短信拦截复选框
 		final CheckBox cb_sms = (CheckBox) view
