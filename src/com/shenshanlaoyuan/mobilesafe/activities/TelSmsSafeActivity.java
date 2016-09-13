@@ -257,6 +257,14 @@ public class TelSmsSafeActivity extends Activity {
 					if (datas.size() != 0) {// 分批加载数据，没有更多数据
 						Toast.makeText(getApplicationContext(), "没有更多数据", 1)
 								.show();
+						// 显示listview
+						lv_safenumbers.setVisibility(View.VISIBLE);
+
+						// 隐藏没有数据
+						tv_nodata.setVisibility(View.GONE);
+
+						// 隐藏加载数据的进度
+						pb_loading.setVisibility(View.GONE);
 						return;
 					}
 
@@ -427,6 +435,15 @@ public class TelSmsSafeActivity extends Activity {
 
 				dialog.dismiss();
 
+				// 显示listview
+				lv_safenumbers.setVisibility(View.VISIBLE);
+
+				// 隐藏没有数据
+				tv_nodata.setVisibility(View.GONE);
+
+				// 隐藏加载数据的进度
+				pb_loading.setVisibility(View.GONE);
+
 			}
 		});
 		ab.setView(view);
@@ -440,7 +457,21 @@ public class TelSmsSafeActivity extends Activity {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return datas.size();
+
+			int size = datas.size();
+			if (size == 0) {
+				// 没有数据
+				// 隐藏listview
+				lv_safenumbers.setVisibility(View.GONE);
+
+				// 显示没有数据
+				tv_nodata.setVisibility(View.VISIBLE);
+
+				// 隐藏加载数据的进度
+				pb_loading.setVisibility(View.GONE);
+
+			}
+			return size;
 		}
 
 		@Override
@@ -523,9 +554,18 @@ public class TelSmsSafeActivity extends Activity {
 									dao.delete(bean.getPhone());
 									// 从容器中删除对应数据
 									datas.remove(position);
+									//剩余数据如果少于10条或者用户删除的是最后一条数据 ，再加载更多的数据
+									if (datas.size() < 9
+											|| position == datas.size()) {
+										initDate();
 
-									// 通知界面更新数据，让用户看到删除数据不存在
-									adapter.notifyDataSetChanged();// 只是让listview重新去当前显示位置的数据
+									} else {
+
+
+										// 通知界面更新数据，让用户看到删除数据不存在
+										adapter.notifyDataSetChanged();// 只是让listview重新去当前显示位置的数据
+									}
+
 								}
 							});
 

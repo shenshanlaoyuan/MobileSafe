@@ -30,6 +30,7 @@ public class ServiceUtils {
 		List<RunningServiceInfo> runningServices = am.getRunningServices(50);
 		
 		for (RunningServiceInfo runningServiceInfo : runningServices) {
+			System.out.println(runningServiceInfo.service.getClassName());
 			if(runningServiceInfo.service.getClassName().equals(serviceName)){
 				
 				isRunning = true ;

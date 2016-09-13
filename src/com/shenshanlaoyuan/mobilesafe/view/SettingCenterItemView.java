@@ -41,7 +41,7 @@ public class SettingCenterItemView extends LinearLayout {
 				.getAttributeValue(
 						"http://schemas.android.com/apk/res/com.shenshanlaoyuan.mobilesafe",
 						"mtitle");
-		System.out.println(content + title);
+		//System.out.println(content + title);
 		tv_title.setText(title);
 		contents = content.split("-");
 		// 初始化设置未选中的颜色为红色
