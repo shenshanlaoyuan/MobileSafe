@@ -29,6 +29,7 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -81,6 +82,8 @@
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LocationService" >
         </service>
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.TelSmsBlackService" >
+        </service>
+        <service android:name="com.shenshanlaoyuan.mobilesafe.service.ComingPhoneService" >
         </service>
 
         <receiver android:name="com.shenshanlaoyuan.mobilesafe.receiver.BootReceiver" >

@@ -10,22 +10,69 @@
         android:text="设置中心" />
 
     <com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView
+        android:id="@+id/sciv_setting_center_autoupdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sciv_setting_center_autoupdate"
         safe:mcontent="自动更新已经关闭-自动更新已经打开"
         safe:mtitle="自动更新设置" >
     </com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView>
-    
-     <com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView
-         
-         android:id="@+id/sciv_setting_center_blackservice"
+
+    <com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView
+        android:id="@+id/sciv_setting_center_blackservice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         safe:mcontent="黑名单拦截设置已经关闭-黑名单拦截设置已经打开"
         safe:mtitle="黑名单拦截设置" >
     </com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView>
 
-   
+    <com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView
+        android:id="@+id/sciv_setting_center_phonelocationservice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        safe:mcontent="来电归属地设置已经关闭-来电归属地设置已经打开"
+        safe:mtitle="来电归属地设置" >
+    </com.shenshanlaoyuan.mobilesafe.view.SettingCenterItemView>
+
+    <RelativeLayout
+        android:id="@+id/rl_settingcenter_locationsytle_root"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_selector"
+        android:clickable="true" >
+
+        <TextView
+            android:id="@+id/tv_settingcenter_locationsytle_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:text="归属地显示风格"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_settingcenter_locationsytle_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_settingcenter_locationsytle_title"
+            android:layout_margin="5dip"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5dip"
+            android:text="卫士蓝"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_settingcenter_locationsytle_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/iv_jiantou_selector" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dip"
+            android:layout_below="@id/tv_settingcenter_locationsytle_content"
+            android:background="@drawable/list_devider" />
+    </RelativeLayout>
 
 </LinearLayout>
