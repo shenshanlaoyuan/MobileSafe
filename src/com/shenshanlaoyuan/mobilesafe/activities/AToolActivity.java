@@ -20,6 +20,10 @@ public class AToolActivity extends Activity {
 		initView();
 	}
 
+	/**
+	 * 归属地查询
+	 * @param v
+	 */
 	public void phoneQuery(View v){
 		Intent intent = new Intent(this,PhoneLocationActivity.class);
 		startActivity(intent);
