@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -64,35 +67,37 @@ public class AppManagerActivity extends Activity {
 	private List<AppBean> sysApks = new ArrayList<AppBean>();
 
 	private void showShare() {
-		 ShareSDK.initSDK(this);
-		 OnekeyShare oks = new OnekeyShare();
-		 //关闭sso授权
-		 oks.disableSSOWhenAuthorize(); 
+		ShareSDK.initSDK(this);
+		OnekeyShare oks = new OnekeyShare();
+		// 关闭sso授权
+		oks.disableSSOWhenAuthorize();
 
-		// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
-		 //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
-		 // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-		 oks.setTitle(getString(R.string.share));
-		 // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-		 oks.setTitleUrl("http://shenshanlaoyuan.com");
-		 // text是分享文本，所有平台都需要这个字段
-		 oks.setText("这是个测试");
-		 //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+		// 分享时Notification的图标和文字 2.5.9以后的版本不调用此方法
+		// oks.setNotification(R.drawable.ic_launcher,
+		// getString(R.string.app_name));
+		// title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+		oks.setTitle(getString(R.string.share));
+		// titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+		oks.setTitleUrl("http://shenshanlaoyuan.com");
+		// text是分享文本，所有平台都需要这个字段
+		oks.setText("这是个测试");
+		// 分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
 		// oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
-		 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-		 oks.setImagePath("/sdcard/p1.jpg");//确保SDcard下面存在此张图片
-		 // url仅在微信（包括好友和朋友圈）中使用
-		 oks.setUrl("http://shenshanlaoyuan.com");
-		 // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-		 oks.setComment("我是测试评论文本");
-		 // site是分享此内容的网站名称，仅在QQ空间使用
-		 oks.setSite(getString(R.string.app_name));
-		 // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-		 oks.setSiteUrl("http://sharesdk.cn");
+		// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+		oks.setImagePath("/sdcard/p1.jpg");// 确保SDcard下面存在此张图片
+		// url仅在微信（包括好友和朋友圈）中使用
+		oks.setUrl("http://shenshanlaoyuan.com");
+		// comment是我对这条分享的评论，仅在人人网和QQ空间使用
+		oks.setComment("我是测试评论文本");
+		// site是分享此内容的网站名称，仅在QQ空间使用
+		oks.setSite(getString(R.string.app_name));
+		// siteUrl是分享此内容的网站地址，仅在QQ空间使用
+		oks.setSiteUrl("http://sharesdk.cn");
 
 		// 启动分享GUI
-		 oks.show(this);
-		 }
+		oks.show(this);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -105,6 +110,26 @@ public class AppManagerActivity extends Activity {
 		initEvent();// 初始化事件
 
 		initPopupWindow();// 初始化弹出窗体
+		initRemoveApkReceiver();// 注册删除apk的广播接受者
+	}
+
+	private void initRemoveApkReceiver() {
+		// 删除apk(包括系统apk)的监听广播
+		receiver = new BroadcastReceiver() {
+
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				// 更新数据 刷新数据
+				initData();
+				System.out.println("删除数据。。。。。。。。。。。");
+			}
+		};
+
+		// 注册删除apk广播
+		IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_REMOVED);
+		// 注意配置数据模式
+		filter.addDataScheme("package");
+		registerReceiver(receiver, filter);
 	}
 
 	private void closePopupWindow() {
@@ -191,15 +216,15 @@ public class AppManagerActivity extends Activity {
 		 * <action android:name="android.intent.action.SEND" /> <category
 		 * android:name="android.intent.category.DEFAULT" /> <data
 		 * android:mimeType="text/plain" />
-		 
-		Intent intent = new Intent("android.intent.action.SEND");
-		intent.addCategory("android.intent.category.DEFAULT");
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_TEXT, "downloadurl:baidu yixia");
-		startActivity(intent);*/
+		 * 
+		 * Intent intent = new Intent("android.intent.action.SEND");
+		 * intent.addCategory("android.intent.category.DEFAULT");
+		 * intent.setType("text/plain"); intent.putExtra(Intent.EXTRA_TEXT,
+		 * "downloadurl:baidu yixia"); startActivity(intent);
+		 */
 
 		// 2,分享微博
-showShare();
+		showShare();
 
 	}
 
@@ -211,7 +236,20 @@ showShare();
 	}
 
 	protected void removeApk() {
-		System.out.println("removeApk");
+		
+		// 卸载软件
+		if (!clickBean.isSystem()) {
+			//用户apk
+			Intent intent = new Intent("android.intent.action.DELETE");
+			intent.addCategory("android.intent.category.DEFAULT");
+			intent.setData(
+					Uri.parse("package:" + clickBean.getPackName()));
+			startActivity(intent);// 删除用户apk的Activity
+			//刷新自己的数据，监听：package remove   注册删除数据广播,通过广播来更新数据
+			
+		} else {
+			//删除系统APK 需要root
+		}
 	}
 
 	private void initEvent() {
@@ -301,6 +339,7 @@ showShare();
 	private PopupWindow pw;
 	private ScaleAnimation sa;
 	private PackageManager pm;
+	private BroadcastReceiver receiver;
 
 	private class ViewHolder {
 		ImageView iv_icon;
@@ -458,7 +497,8 @@ showShare();
 				// 获取所有apk数据
 				List<AppBean> datas = AppManagerEngine
 						.getAllApks(getApplicationContext());
-
+				sysApks.clear();
+				userApks.clear();
 				// 分类，系统还是用户
 				for (AppBean appBean : datas) {
 					if (appBean.isSystem()) {
