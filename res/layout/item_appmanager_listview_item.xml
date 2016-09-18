@@ -16,6 +16,7 @@
         android:id="@+id/tv_appmanager_listview_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:textColor="#444444"
         android:text="计算器" />
     
     <TextView
@@ -26,6 +27,7 @@
         android:id="@+id/tv_appmanager_listview_item_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#444444"
         android:text="位置" />
     
     <TextView
@@ -34,6 +36,7 @@
         android:id="@+id/tv_appmanager_listview_item_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:textColor="#444444"
         android:text="大小" />
 
 </RelativeLayout>

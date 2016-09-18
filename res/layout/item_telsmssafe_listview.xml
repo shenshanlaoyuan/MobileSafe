@@ -12,6 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textColor="#444444"
             android:text="110" />
 
         <TextView
@@ -23,6 +24,7 @@
             android:id="@+id/tv_telsmssafe_listview_item_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+             android:textColor="#444444"
             android:text="拦截模式" />
 
         <ImageView

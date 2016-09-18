@@ -42,6 +42,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
 
     <application
         android:allowBackup="true"
@@ -135,6 +136,10 @@
         </activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.AppManagerActivity" >
         </activity>
+        <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.TastManagerActivity" >
+        </activity>
+        <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.TaskManagerSettingActivity" >
+        </activity>
 
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LostFindService" >
         </service>
@@ -143,6 +148,8 @@
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.TelSmsBlackService" >
         </service>
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.ComingPhoneService" >
+        </service>
+         <service android:name="com.shenshanlaoyuan.mobilesafe.service.ClearTaskService" >
         </service>
 
         <receiver android:name="com.shenshanlaoyuan.mobilesafe.receiver.BootReceiver" >
