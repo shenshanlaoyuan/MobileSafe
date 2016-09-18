@@ -891,6 +891,7 @@ containing a value of this type.
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
+        public static final int function_greenbutton_textcolor_selector=0x7f080004;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1119,83 +1120,89 @@ containing a value of this type.
         public static final int call_locate_orange=0x7f020061;
         public static final int call_locate_white=0x7f020062;
         public static final int callmsgsafe=0x7f020063;
-        public static final int gv_list_selector=0x7f020064;
-        public static final int ic_delete_btn=0x7f020065;
-        public static final int ic_delete_btn_focused=0x7f020066;
-        public static final int ic_launcher=0x7f020067;
-        public static final int img1=0x7f020068;
-        public static final int img2=0x7f020069;
-        public static final int img3=0x7f02006a;
-        public static final int img4=0x7f02006b;
-        public static final int iv_delete_selector=0x7f02006c;
-        public static final int iv_jiantou_selector=0x7f02006d;
-        public static final int jiantou1_disable=0x7f02006e;
-        public static final int jiantou1_pressed=0x7f02006f;
-        public static final int list_devider=0x7f020070;
-        public static final int local_popup_bg=0x7f020071;
-        public static final int lock=0x7f020072;
-        public static final int luncher_bg=0x7f020073;
-        public static final int main_icon=0x7f020074;
-        public static final int netmanager=0x7f020075;
-        public static final int phone=0x7f020076;
-        public static final int safe=0x7f020077;
-        public static final int settings=0x7f020078;
-        public static final int setup1=0x7f020079;
-        public static final int sky=0x7f02007a;
-        public static final int ssdk_auth_title_back=0x7f02007b;
-        public static final int ssdk_back_arr=0x7f02007c;
-        public static final int ssdk_logo=0x7f02007d;
-        public static final int ssdk_oks_classic_alipay=0x7f02007e;
-        public static final int ssdk_oks_classic_bluetooth=0x7f02007f;
-        public static final int ssdk_oks_classic_check_checked=0x7f020080;
-        public static final int ssdk_oks_classic_check_default=0x7f020081;
-        public static final int ssdk_oks_classic_douban=0x7f020082;
-        public static final int ssdk_oks_classic_dropbox=0x7f020083;
-        public static final int ssdk_oks_classic_email=0x7f020084;
-        public static final int ssdk_oks_classic_evernote=0x7f020085;
-        public static final int ssdk_oks_classic_facebook=0x7f020086;
-        public static final int ssdk_oks_classic_facebookmessenger=0x7f020087;
-        public static final int ssdk_oks_classic_flickr=0x7f020088;
-        public static final int ssdk_oks_classic_foursquare=0x7f020089;
-        public static final int ssdk_oks_classic_googleplus=0x7f02008a;
-        public static final int ssdk_oks_classic_instagram=0x7f02008b;
-        public static final int ssdk_oks_classic_instapaper=0x7f02008c;
-        public static final int ssdk_oks_classic_kaixin=0x7f02008d;
-        public static final int ssdk_oks_classic_kakaostory=0x7f02008e;
-        public static final int ssdk_oks_classic_kakaotalk=0x7f02008f;
-        public static final int ssdk_oks_classic_laiwang=0x7f020090;
-        public static final int ssdk_oks_classic_laiwangmoments=0x7f020091;
-        public static final int ssdk_oks_classic_line=0x7f020092;
-        public static final int ssdk_oks_classic_linkedin=0x7f020093;
-        public static final int ssdk_oks_classic_mingdao=0x7f020094;
-        public static final int ssdk_oks_classic_pinterest=0x7f020095;
-        public static final int ssdk_oks_classic_platform_cell_back=0x7f020096;
-        public static final int ssdk_oks_classic_platfrom_cell_back_nor=0x7f0200af;
-        public static final int ssdk_oks_classic_platfrom_cell_back_sel=0x7f0200b0;
-        public static final int ssdk_oks_classic_pocket=0x7f020097;
-        public static final int ssdk_oks_classic_progressbar=0x7f020098;
-        public static final int ssdk_oks_classic_qq=0x7f020099;
-        public static final int ssdk_oks_classic_qzone=0x7f02009a;
-        public static final int ssdk_oks_classic_renren=0x7f02009b;
-        public static final int ssdk_oks_classic_shortmessage=0x7f02009c;
-        public static final int ssdk_oks_classic_sinaweibo=0x7f02009d;
-        public static final int ssdk_oks_classic_tencentweibo=0x7f02009e;
-        public static final int ssdk_oks_classic_tumblr=0x7f02009f;
-        public static final int ssdk_oks_classic_twitter=0x7f0200a0;
-        public static final int ssdk_oks_classic_vkontakte=0x7f0200a1;
-        public static final int ssdk_oks_classic_wechat=0x7f0200a2;
-        public static final int ssdk_oks_classic_wechatfavorite=0x7f0200a3;
-        public static final int ssdk_oks_classic_wechatmoments=0x7f0200a4;
-        public static final int ssdk_oks_classic_whatsapp=0x7f0200a5;
-        public static final int ssdk_oks_classic_yixin=0x7f0200a6;
-        public static final int ssdk_oks_classic_yixinmoments=0x7f0200a7;
-        public static final int ssdk_oks_classic_youdao=0x7f0200a8;
-        public static final int ssdk_oks_ptr_ptr=0x7f0200a9;
-        public static final int ssdk_title_div=0x7f0200aa;
-        public static final int sysoptimize=0x7f0200ab;
-        public static final int taskmanager=0x7f0200ac;
-        public static final int trojan=0x7f0200ad;
-        public static final int unlock=0x7f0200ae;
+        public static final int function_greenbutton_normal=0x7f020064;
+        public static final int function_greenbutton_pressed=0x7f020065;
+        public static final int function_greenbutton_selector=0x7f020066;
+        public static final int gv_list_selector=0x7f020067;
+        public static final int ic_delete_btn=0x7f020068;
+        public static final int ic_delete_btn_focused=0x7f020069;
+        public static final int ic_launcher=0x7f02006a;
+        public static final int img1=0x7f02006b;
+        public static final int img2=0x7f02006c;
+        public static final int img3=0x7f02006d;
+        public static final int img4=0x7f02006e;
+        public static final int iv_delete_selector=0x7f02006f;
+        public static final int iv_jiantou_selector=0x7f020070;
+        public static final int jiantou1_disable=0x7f020071;
+        public static final int jiantou1_pressed=0x7f020072;
+        public static final int list_devider=0x7f020073;
+        public static final int local_popup_bg=0x7f020074;
+        public static final int lock=0x7f020075;
+        public static final int luncher_bg=0x7f020076;
+        public static final int main_icon=0x7f020077;
+        public static final int netmanager=0x7f020078;
+        public static final int phone=0x7f020079;
+        public static final int safe=0x7f02007a;
+        public static final int settings=0x7f02007b;
+        public static final int setup1=0x7f02007c;
+        public static final int sky=0x7f02007d;
+        public static final int ssdk_auth_title_back=0x7f02007e;
+        public static final int ssdk_back_arr=0x7f02007f;
+        public static final int ssdk_logo=0x7f020080;
+        public static final int ssdk_oks_classic_alipay=0x7f020081;
+        public static final int ssdk_oks_classic_bluetooth=0x7f020082;
+        public static final int ssdk_oks_classic_check_checked=0x7f020083;
+        public static final int ssdk_oks_classic_check_default=0x7f020084;
+        public static final int ssdk_oks_classic_douban=0x7f020085;
+        public static final int ssdk_oks_classic_dropbox=0x7f020086;
+        public static final int ssdk_oks_classic_email=0x7f020087;
+        public static final int ssdk_oks_classic_evernote=0x7f020088;
+        public static final int ssdk_oks_classic_facebook=0x7f020089;
+        public static final int ssdk_oks_classic_facebookmessenger=0x7f02008a;
+        public static final int ssdk_oks_classic_flickr=0x7f02008b;
+        public static final int ssdk_oks_classic_foursquare=0x7f02008c;
+        public static final int ssdk_oks_classic_googleplus=0x7f02008d;
+        public static final int ssdk_oks_classic_instagram=0x7f02008e;
+        public static final int ssdk_oks_classic_instapaper=0x7f02008f;
+        public static final int ssdk_oks_classic_kaixin=0x7f020090;
+        public static final int ssdk_oks_classic_kakaostory=0x7f020091;
+        public static final int ssdk_oks_classic_kakaotalk=0x7f020092;
+        public static final int ssdk_oks_classic_laiwang=0x7f020093;
+        public static final int ssdk_oks_classic_laiwangmoments=0x7f020094;
+        public static final int ssdk_oks_classic_line=0x7f020095;
+        public static final int ssdk_oks_classic_linkedin=0x7f020096;
+        public static final int ssdk_oks_classic_mingdao=0x7f020097;
+        public static final int ssdk_oks_classic_pinterest=0x7f020098;
+        public static final int ssdk_oks_classic_platform_cell_back=0x7f020099;
+        public static final int ssdk_oks_classic_platfrom_cell_back_nor=0x7f0200b5;
+        public static final int ssdk_oks_classic_platfrom_cell_back_sel=0x7f0200b6;
+        public static final int ssdk_oks_classic_pocket=0x7f02009a;
+        public static final int ssdk_oks_classic_progressbar=0x7f02009b;
+        public static final int ssdk_oks_classic_qq=0x7f02009c;
+        public static final int ssdk_oks_classic_qzone=0x7f02009d;
+        public static final int ssdk_oks_classic_renren=0x7f02009e;
+        public static final int ssdk_oks_classic_shortmessage=0x7f02009f;
+        public static final int ssdk_oks_classic_sinaweibo=0x7f0200a0;
+        public static final int ssdk_oks_classic_tencentweibo=0x7f0200a1;
+        public static final int ssdk_oks_classic_tumblr=0x7f0200a2;
+        public static final int ssdk_oks_classic_twitter=0x7f0200a3;
+        public static final int ssdk_oks_classic_vkontakte=0x7f0200a4;
+        public static final int ssdk_oks_classic_wechat=0x7f0200a5;
+        public static final int ssdk_oks_classic_wechatfavorite=0x7f0200a6;
+        public static final int ssdk_oks_classic_wechatmoments=0x7f0200a7;
+        public static final int ssdk_oks_classic_whatsapp=0x7f0200a8;
+        public static final int ssdk_oks_classic_yixin=0x7f0200a9;
+        public static final int ssdk_oks_classic_yixinmoments=0x7f0200aa;
+        public static final int ssdk_oks_classic_youdao=0x7f0200ab;
+        public static final int ssdk_oks_ptr_ptr=0x7f0200ac;
+        public static final int ssdk_title_div=0x7f0200ad;
+        public static final int sysoptimize=0x7f0200ae;
+        public static final int taskmanager=0x7f0200af;
+        public static final int trojan=0x7f0200b0;
+        public static final int unlock=0x7f0200b1;
+        public static final int widget_bg_portrait=0x7f0200b2;
+        public static final int widget_bg_portrait_child=0x7f0200b3;
+        public static final int widget_bg_portrait_child_divider=0x7f0200b4;
     }
     public static final class id {
         public static final int action_bar=0x7f0b001c;
@@ -1223,6 +1230,7 @@ containing a value of this type.
         public static final int bt_telsms_addsafenumber=0x7f0b0062;
         public static final int bt_telsmssafe_add=0x7f0b0069;
         public static final int bt_telsmssafe_cancel=0x7f0b006a;
+        public static final int btn_clear=0x7f0b008d;
         public static final int cb_settingcenter_autoupdate_checked=0x7f0b007f;
         public static final int cb_setup4_isprotected=0x7f0b0056;
         public static final int cb_taskmanager_settingcenter_lockscree_clear=0x7f0b0060;
@@ -1269,8 +1277,8 @@ containing a value of this type.
         public static final int lv_taskmanager_appdatas=0x7f0b005d;
         public static final int lv_telsms_safenumbers=0x7f0b0063;
         public static final int middle=0x7f0b0018;
-        public static final int mn_modify_name=0x7f0b008c;
-        public static final int mn_test_menu=0x7f0b008d;
+        public static final int mn_modify_name=0x7f0b008f;
+        public static final int mn_test_menu=0x7f0b0090;
         public static final int never=0x7f0b0012;
         public static final int none=0x7f0b0019;
         public static final int normal=0x7f0b0007;
@@ -1279,6 +1287,8 @@ containing a value of this type.
         public static final int pb_splash_download_progress=0x7f0b005a;
         public static final int pb_taskmanager_loading=0x7f0b005f;
         public static final int pb_telsms_loading=0x7f0b0065;
+        public static final int process_count=0x7f0b008b;
+        public static final int process_memory=0x7f0b008c;
         public static final int progress_circular=0x7f0b0004;
         public static final int progress_horizontal=0x7f0b0005;
         public static final int radio=0x7f0b002f;
@@ -1336,7 +1346,7 @@ containing a value of this type.
         public static final int tv_telsms_nodata=0x7f0b0064;
         public static final int tv_telsmssafe_listview_item_mode=0x7f0b0085;
         public static final int tv_telsmssafe_listview_item_number=0x7f0b0084;
-        public static final int tv_toast_location=0x7f0b008b;
+        public static final int tv_toast_location=0x7f0b008e;
         public static final int up=0x7f0b0021;
         public static final int useLogo=0x7f0b000e;
         public static final int withText=0x7f0b0013;
@@ -1417,8 +1427,9 @@ containing a value of this type.
         public static final int item_telsmssafe_listview=0x7f03002f;
         public static final int popup_appmanager=0x7f030030;
         public static final int popup_blacknumber_item=0x7f030031;
-        public static final int support_simple_spinner_dropdown_item=0x7f030032;
-        public static final int sys_toast=0x7f030033;
+        public static final int process_widget=0x7f030032;
+        public static final int support_simple_spinner_dropdown_item=0x7f030033;
+        public static final int sys_toast=0x7f030034;
     }
     public static final class menu {
         public static final int splash=0x7f0e0000;
@@ -1590,7 +1601,7 @@ containing a value of this type.
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0d008c;
+        public static final int AppTheme=0x7f0d008d;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0d0063;
@@ -1793,10 +1804,12 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0d000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0d0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0d0022;
-        public static final int tv_title=0x7f0d008d;
+        public static final int tv_title=0x7f0d008e;
+        public static final int widget_text=0x7f0d008c;
     }
     public static final class xml {
         public static final int device_admin_sample=0x7f050000;
+        public static final int example_appwidget_info=0x7f050001;
     }
     public static final class styleable {
         /**  ============================================ 
