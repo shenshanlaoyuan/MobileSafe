@@ -46,6 +46,15 @@ public class AToolActivity extends Activity {
 		}.start();
 
 	}
+	
+	/**
+	 * 程序锁
+	 * @param v
+	 */
+	public void lockActivity(View v) {
+		Intent intent = new Intent(getApplicationContext(), LockedActivity.class);
+		startActivity(intent);
+	}
 
 	private void initView() {
 		// TODO Auto-generated method stub

@@ -233,6 +233,8 @@ public class TastManagerActivity extends Activity {
 					// 显示的是自己
 					// 隐藏复选框
 					holder.cb_checked.setVisibility(View.GONE);
+				}else{
+					holder.cb_checked.setVisibility(View.VISIBLE);
 				}
 
 				return convertView;
