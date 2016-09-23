@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * 进程的数据封装类
- * @author Administrator
+ * @author hp
  *
  */
 public class TaskBean {

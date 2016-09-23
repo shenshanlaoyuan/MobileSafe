@@ -44,7 +44,7 @@ import com.shenshanlaoyuan.mobilesafe.engine.AppManagerEngine;
 /**
  * 软件管家的界面
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class AppManagerActivity extends Activity {

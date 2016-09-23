@@ -12,7 +12,7 @@ import android.text.format.Formatter;
 
 /**
  * 流量统计的业务类
- * @author Administrator
+ * @author hp
  *
  */
 public class ConnectivityEngine {

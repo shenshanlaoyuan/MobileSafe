@@ -16,7 +16,7 @@ import com.shenshanlaoyuan.mobilesafe.utils.SpTools;
 
 /**
  * 进程管理的设置界面
- * @author Administrator
+ * @author hp
  *
  */
 public class TaskManagerSettingActivity extends Activity {

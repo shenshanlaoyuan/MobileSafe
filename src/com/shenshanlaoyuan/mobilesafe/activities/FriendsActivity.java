@@ -26,7 +26,7 @@ import com.shenshanlaoyuan.mobilesafe.utils.MyConstants;
 
 
 /**
- * @author Administrator
+ * @author hp
  * 显示所有好友信息的界面
  */
 public class FriendsActivity extends BaseFriendsCallSmsActivity {

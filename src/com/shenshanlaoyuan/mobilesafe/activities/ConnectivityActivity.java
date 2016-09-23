@@ -24,7 +24,7 @@ import com.shenshanlaoyuan.mobilesafe.engine.ConnectivityEngine;
 
 /**
  * 流量统计的界面
- * @author Administrator
+ * @author hp
  *
  */
 public class ConnectivityActivity extends Activity {

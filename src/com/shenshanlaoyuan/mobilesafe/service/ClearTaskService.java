@@ -14,7 +14,7 @@ import android.os.IBinder;
 
 /**
  * 该服务主要完成 锁屏注册广播 或则取消注册
- * @author Administrator
+ * @author hp
  *
  */
 public class ClearTaskService extends Service {

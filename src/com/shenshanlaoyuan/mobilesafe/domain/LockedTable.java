@@ -3,7 +3,7 @@ package com.shenshanlaoyuan.mobilesafe.domain;
 
 /**
  * 程序锁数据库 加锁的表结构
- * @author Administrator
+ * @author hp
  *
  */
 public interface LockedTable {

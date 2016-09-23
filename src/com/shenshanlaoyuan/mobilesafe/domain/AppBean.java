@@ -5,11 +5,12 @@ import android.graphics.drawable.Drawable;
 /**
  * apk信息封装类
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class AppBean {
 	private int uid;
+	private String apkPath;//apk安装路径
 	private Drawable icon; // apk的图标
 	private String appName;// apk的名字
 	private long size;// 占用的大小 单位byte
@@ -72,6 +73,14 @@ public class AppBean {
 
 	public void setUid(int uid) {
 		this.uid = uid;
+	}
+
+	public String getApkPath() {
+		return apkPath;
+	}
+
+	public void setApkPath(String apkPath) {
+		this.apkPath = apkPath;
 	}
 
 }

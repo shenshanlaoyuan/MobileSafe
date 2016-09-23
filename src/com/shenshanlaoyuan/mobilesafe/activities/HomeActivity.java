@@ -64,6 +64,13 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断点击位置
 				switch (position) {
+				case 5://病毒查杀
+				{
+					Intent intent = new Intent(HomeActivity.this,
+							AntivirusActivity.class);
+					startActivity(intent);
+				}
+					break;
 				case 4://流量统计
 				{
 					Intent intent = new Intent(HomeActivity.this,

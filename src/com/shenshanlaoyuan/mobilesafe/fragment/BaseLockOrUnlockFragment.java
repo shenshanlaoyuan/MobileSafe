@@ -28,7 +28,7 @@ import com.shenshanlaoyuan.mobilesafe.engine.AppManagerEngine;
 /**
  * 已加速的fragment
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class BaseLockOrUnlockFragment extends Fragment {

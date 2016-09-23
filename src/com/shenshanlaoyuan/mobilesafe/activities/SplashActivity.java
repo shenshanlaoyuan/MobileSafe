@@ -73,8 +73,10 @@ public class SplashActivity extends ActionBarActivity {
 		initAnimation();
 		// 初始化数据
 		initDate();
-		// 拷贝数据库到本地
+		// 拷贝归属地数据库到本地
 		copyDB("address.db");
+		// 拷贝病毒数据库到本地
+		copyDB("antivirus.db");
 
 		// 耗时的功能封装，只要耗时的处理，都放到此方法
 		// timeInitialization() 如下：

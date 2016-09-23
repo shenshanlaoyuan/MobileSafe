@@ -38,7 +38,7 @@ import com.shenshanlaoyuan.mobilesafe.utils.SpTools;
 /**
  * 进程管家的界面
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class TastManagerActivity extends Activity {

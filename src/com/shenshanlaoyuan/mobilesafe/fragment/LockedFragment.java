@@ -13,7 +13,7 @@ import com.shenshanlaoyuan.mobilesafe.R;
 /**
  * 已加速的fragment
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class LockedFragment extends BaseLockOrUnlockFragment {

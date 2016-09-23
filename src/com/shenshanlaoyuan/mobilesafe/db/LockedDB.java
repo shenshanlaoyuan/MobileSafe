@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * 创建程序锁的数据库 ,就一张表，该表就一个列 packname
- * @author Administrator
+ * @author hp
  *
  */
 public class LockedDB extends SQLiteOpenHelper {

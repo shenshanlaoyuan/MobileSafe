@@ -14,7 +14,7 @@ import android.os.Environment;
 import com.shenshanlaoyuan.mobilesafe.domain.AppBean;
 /**
  * 获取所有安装的apk详细信息
- * @author Administrator
+ * @author hp
  *
  */
 public class AppManagerEngine {

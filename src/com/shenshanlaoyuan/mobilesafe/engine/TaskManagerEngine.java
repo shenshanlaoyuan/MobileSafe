@@ -22,7 +22,7 @@ import com.shenshanlaoyuan.mobilesafe.domain.TaskBean;
 /**
  * 获取所有运行中进程的信息
  * 
- * @author Administrator
+ * @author hp
  * 
  */
 public class TaskManagerEngine {

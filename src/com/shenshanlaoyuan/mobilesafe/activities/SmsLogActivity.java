@@ -8,7 +8,7 @@ import com.shenshanlaoyuan.mobilesafe.engine.ReadContantsEngine;
 
 
 /**
- * @author Administrator
+ * @author hp
  * 显示所有好友信息的界面
  */
 public class SmsLogActivity extends BaseFriendsCallSmsActivity {

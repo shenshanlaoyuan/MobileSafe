@@ -14,7 +14,7 @@ import com.shenshanlaoyuan.mobilesafe.R;
 
 /**
  * 未加锁的fragment
- * @author Administrator
+ * @author hp
  *
  */
 public class UnlockedFragment extends BaseLockOrUnlockFragment {
