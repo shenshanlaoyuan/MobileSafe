@@ -31,4 +31,14 @@
         
     </style>
 
+    <style name="CicleProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progressstyleshape</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">3500</item>
+        <item name="android:minWidth">80dip</item>
+        <item name="android:maxWidth">80dip</item>
+        <item name="android:minHeight">80dip</item>
+        <item name="android:maxHeight">80dip</item>
+    </style>
 </resources>

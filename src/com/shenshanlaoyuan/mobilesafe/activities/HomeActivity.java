@@ -64,6 +64,14 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断点击位置
 				switch (position) {
+				case 4://流量统计
+				{
+					Intent intent = new Intent(HomeActivity.this,
+							ConnectivityActivity.class);
+					startActivity(intent);
+				}
+					break;
+					
 				case 3://进程管理
 				{
 					Intent intent = new Intent(HomeActivity.this,

@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
  * 
  */
 public class AppBean {
+	private int uid;
 	private Drawable icon; // apk的图标
 	private String appName;// apk的名字
 	private long size;// 占用的大小 单位byte
@@ -63,6 +64,14 @@ public class AppBean {
 
 	public void setPackName(String packName) {
 		this.packName = packName;
+	}
+
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 
 }
