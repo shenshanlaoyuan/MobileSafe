@@ -5,6 +5,7 @@ import java.util.List;
 import android.test.AndroidTestCase;
 
 import com.shenshanlaoyuan.mobilesafe.dao.BlackDao;
+import com.shenshanlaoyuan.mobilesafe.dao.LockedDao;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackBean;
 import com.shenshanlaoyuan.mobilesafe.domain.BlackTable;
 import com.shenshanlaoyuan.mobilesafe.engine.PhoneLocationEngine;
@@ -12,6 +13,14 @@ import com.shenshanlaoyuan.mobilesafe.engine.ReadContantsEngine;
 import com.shenshanlaoyuan.mobilesafe.utils.ServiceUtils;
 
 public class MyTest extends AndroidTestCase {
+	
+	public void testLockedData(){
+		LockedDao dao = new LockedDao(getContext());
+		dao.add("aa");
+		dao.add("bb");
+		dao.remove("aa");
+		System.out.println(dao.getAllLockedDatas());
+	}
 	
 	public void testMobileQuery(){
 		

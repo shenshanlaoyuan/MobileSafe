@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.shenshanlaoyuan.mobilesafe.R;
 import com.shenshanlaoyuan.mobilesafe.fragment.LockedFragment;
-import com.shenshanlaoyuan.mobilesafe.fragment.UnlockFragment;
+import com.shenshanlaoyuan.mobilesafe.fragment.UnlockedFragment;
 
 /**
  * 程序锁界面
@@ -86,7 +86,7 @@ public class LockedActivity extends FragmentActivity {
 		tv_unlock = (TextView) findViewById(R.id.tv_lockedactivity_unlock);
 		fl_locked = (FrameLayout) findViewById(R.id.fl_lockedactivity_content);
 		lockedFragment = new LockedFragment();
-		unlockFragment = new UnlockFragment();
+		unlockFragment = new UnlockedFragment();
 		
 
 	}
