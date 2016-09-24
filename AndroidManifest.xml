@@ -144,6 +144,8 @@
         </activity>
         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.AntivirusActivity" >
         </activity>
+         <activity android:name="com.shenshanlaoyuan.mobilesafe.activities.CacheActivity" >
+        </activity>
 
         
         <service android:name="com.shenshanlaoyuan.mobilesafe.service.LostFindService" >

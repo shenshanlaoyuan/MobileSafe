@@ -25,7 +25,7 @@ import com.shenshanlaoyuan.mobilesafe.utils.Md5Utils;
 
 /**
  * 扫描病毒的界面
- * @author Administrator
+ * @author hp
  *
  */
 public class AntivirusActivity extends Activity {
